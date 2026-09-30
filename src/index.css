@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700;1,900&family=Syne:wght@400;600;700;800&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --obsidian: #181A20;
+    --card-steel: #21252F;
+    --crimson: #EF4444;
+    --gold: #F59E0B;
+    --gold-foil: #D97706;
+    --parchment: #F3F4F6;
+    --slate-text: #D1D5DB;
+  }
+
+  body {
+    @apply bg-[#181A20] text-[#D1D5DB] antialiased selection:bg-[#EF4444] selection:text-white;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .font-editorial {
+    font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .gold-foil-text {
+    background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #B45309 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .crimson-foil-text {
+    background: linear-gradient(135deg, #FCA5A5 0%, #EF4444 50%, #991B1B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gold-glow {
+    box-shadow: 0 0 35px rgba(245, 158, 11, 0.18);
+  }
+
+  .crimson-glow {
+    box-shadow: 0 0 35px rgba(239, 68, 68, 0.25);
+  }
+
+  .text-high {
+    @apply text-white;
+  }
+
+  .text-muted {
+    @apply text-zinc-300;
+  }
+
+  .border-forensic {
+    @apply border border-red-700/40;
+  }
+
+  .bg-card {
+    @apply bg-[#21252F];
+  }
+
+  .font-display {
+    font-family: 'Syne', sans-serif;
+  }
+
+  .gpu-layer {
+    @apply transform-gpu;
+    will-change: transform, opacity;
+  }
+
+  .film-grain {
+    @apply fixed inset-0 z-[9999] pointer-events-none opacity-[0.03];
+    background-image: url("https://www.transparenttextures.com/patterns/60-lines.png");
+    filter: contrast(150%) brightness(100%);
+  }
+
+  .spotlight {
+    @apply fixed inset-0 z-[1] pointer-events-none;
+    background: radial-gradient(
+      800px circle at var(--x, 50%) var(--y, 50%),
+      rgba(245, 158, 11, 0.15),
+      transparent 70%
+    );
+  }
+
+  /* Micro-Bevel Hardware Enclave Card */
+  .bevel-card {
+    position: relative;
+    background: rgba(10, 13, 20, 0.92);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(51, 65, 85, 0.6);
+    border-radius: 1.25rem;
+    overflow: hidden;
+  }
+
+  .bevel-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Tabular Numerals for Jitter-Free Clocks & Percentages */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Radar Pulse Animation */
+  @keyframes radar-pulse {
+    0% {
+      transform: scale(0.95);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+  }
+
+  .animate-radar {
+    animation: radar-pulse 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.glass {
+  @apply backdrop-blur-xl bg-black/70 border border-white/15;
+}
+
+.blueprint-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.blueprint-grid-dense {
+  background-image: 
+    linear-gradient(to right, rgba(245,158,11,0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245,158,11,0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #181A20;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2D323F;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F59E0B;
+}

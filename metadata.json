@@ -1,0 +1,6 @@
+{
+  "name": "FIP: Forensic Investigation Platform",
+  "description": "A high-security SOC/DFIR dashboard for confidential evidence submission, immutable logging, and forensic analysis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
