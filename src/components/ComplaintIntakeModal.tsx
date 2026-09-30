@@ -38,8 +38,6 @@ export const ComplaintIntakeModal: React.FC<ComplaintIntakeModalProps> = ({ isOp
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [previewHash, setPreviewHash] = useState<string>('');
 
-  if (!isOpen) return null;
-
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
@@ -165,6 +163,8 @@ export const ComplaintIntakeModal: React.FC<ComplaintIntakeModalProps> = ({ isOp
       setIsSubmitting(false);
     }
   };
+
+  if (!isOpen) return null;
 
   return (
     <div id="complaint-intake-modal-overlay" className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">

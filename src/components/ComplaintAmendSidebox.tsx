@@ -39,25 +39,12 @@ export const ComplaintAmendSidebox: React.FC<ComplaintAmendSideboxProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [previewSeal, setPreviewSeal] = useState('');
 
-  const currentVersion: ComplaintVersion | undefined = complaint?.versions[complaint.versions.length - 1];
-  const originalVersion: ComplaintVersion | undefined = complaint?.versions[0];
+  const currentVersion: ComplaintVersion | undefined = complaint?.versions?.[complaint.versions.length - 1];
+  const originalVersion: ComplaintVersion | undefined = complaint?.versions?.[0];
   const nextVersionNumber = (complaint?.currentVersionNumber || 1) + 1;
 
-  useEffect(() => {
-    if (complaint && currentVersion) {
-      setStatement(currentVersion.statement);
-      setIncidentLocation(currentVersion.incidentLocation || '');
-      setSuspectDetails(currentVersion.suspectDetails || '');
-      setFinancialLoss(currentVersion.financialLossEstimated || '');
-      setAttachments([...currentVersion.attachments]);
-      setRevisionNotes('');
-      recomputeSeal(currentVersion.statement, currentVersion.attachments);
-    }
-  }, [complaint, isOpen]);
-
-  if (!isOpen || !complaint) return null;
-
   const recomputeSeal = async (stmt: string, atts: ComplaintAttachment[]) => {
+    if (!complaint) return;
     const parentHash = currentVersion?.sha256Seal || complaint.originalSha256Seal;
     const payload = {
       complaintId: complaint.id,
@@ -71,6 +58,18 @@ export const ComplaintAmendSidebox: React.FC<ComplaintAmendSideboxProps> = ({
     const hash = await computeSha256OfText(canonical);
     setPreviewSeal(hash);
   };
+
+  useEffect(() => {
+    if (complaint && currentVersion && isOpen) {
+      setStatement(currentVersion.statement);
+      setIncidentLocation(currentVersion.incidentLocation || '');
+      setSuspectDetails(currentVersion.suspectDetails || '');
+      setFinancialLoss(currentVersion.financialLossEstimated || '');
+      setAttachments([...currentVersion.attachments]);
+      setRevisionNotes('');
+      recomputeSeal(currentVersion.statement, currentVersion.attachments);
+    }
+  }, [complaint, isOpen]);
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -169,6 +168,8 @@ export const ComplaintAmendSidebox: React.FC<ComplaintAmendSideboxProps> = ({
       setIsSubmitting(false);
     }
   };
+
+  if (!isOpen || !complaint) return null;
 
   return (
     <div 

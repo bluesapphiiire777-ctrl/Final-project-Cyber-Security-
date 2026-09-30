@@ -2504,7 +2504,7 @@ Return a valid JSON object strictly matching this schema without markdown:
 }`;
 
           const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-3.8-flash',
             contents: prompt,
             config: {
               responseMimeType: 'application/json',
@@ -2660,7 +2660,7 @@ SENIOR INVESTIGATOR QUERY:
       let aiReply = '';
       try {
         const response = await ai.models.generateContent({
-          model: 'gemini-2.5-flash',
+          model: 'gemini-3.8-flash',
           contents: promptContext,
           config: {
             systemInstruction,
