@@ -1,3 +1,5 @@
+Gork AI STUDIO'S
+
 # Forensics & Integrity Platform (FIP Vault)
 
 A high-integrity forensic evidence vault platform built with React 19, Vite, Express, TypeScript, Tailwind CSS v4, and MongoDB.
